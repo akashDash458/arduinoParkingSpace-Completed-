@@ -1,2 +1,2 @@
 # arduinoParkingSpace
-Basic parking space with arduino using Rfid, lcd panel and ultrasonic sensors.
+Basic parking space with arduino mega using Rfid scanner, LCD panel, servo motors and ultrasonic sensors.
