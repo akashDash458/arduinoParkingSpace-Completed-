@@ -1,20 +1,27 @@
-#include <LiquidCrystal.h>  
+/**This Arduino project uses Arduino Mega 2560 for a 3x2 parking system.
+ * It uses ultrasonic sensors to detect cars, servo motors to open and close gate after scanning Rfid card.
+ * Display is taken care by a 16x2 lcd panel and LCDs to show parking status of each slot. * 
+ * 
+ */
+ #include <LiquidCrystal.h>  
 int Contrast=30;
+//Instead of using potentiometer, I ve manually set the contrast
  LiquidCrystal lcd(12, 11, 5, 4, 3, 2);   
 
  void setup()
  { 
-    analogWrite(6,Contrast);
-    lcd.begin(16, 2);
+    analogWrite(6,Contrast);  //To set the contrast
+    lcd.begin(16, 2);         //To setup no. of columns and rows of lcd panel
     lcd.print("hello, world!");
 
   }  
+//This part needs to be  changed once we combine the project  
 void loop()
  {  
      lcd.setCursor(0, 0);
         
  }
-
+//Invoked when the gate opens
 void gateOpen()
 {
   lcd.clear();
@@ -22,6 +29,7 @@ void gateOpen()
   delay(2500); 
 }
 
+////Invoked when the gate closes
 void gateClose()
 {
   lcd.clear();
@@ -31,6 +39,7 @@ void gateClose()
   parkingStatus();
  }
 
+//This function shows the current parking status. LED status to be added later.
 void parkingStatus()
 {
   lcd.clear();
@@ -49,6 +58,7 @@ void parkingStatus()
   }
 }
 
+//This function shows nearest slot after taking parameters from calciulateNearest function
 void displayNearest(int r,int c)
 {
   lcd.clear();
