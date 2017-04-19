@@ -93,7 +93,7 @@ void dispNearest(int r,int c)
   lcd.print("Nearest slot: ");
   char row=(char)(r+65);
   int col =c+1;
-  float distance = 4.0 + 2.5*col;
+  float distance = 4.0 + 2.5*c;
   lcd.print(row);
   lcd.print(col);
   
