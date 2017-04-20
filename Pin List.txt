@@ -5,18 +5,16 @@ All pin connections from Arduino 2560 to peripherals are mentioned here.
 
 Arduino - LCD Panel
 ______________________________________
-	2 - D7
-	3 - D6
-	4 - D5
-	5 - D4
+	22 - D7
+	23 - D6
+	24 - D5
+	25 - D4
+	26 - Vo
 
-	6 - Vo
-
-	9 -  A
-	11 - E
-	12 - Rs
-
-	5v - Vdd
+	28 - Rs
+	29 - E
+	
+	5v - Vdd,A  (in parallel)
 	GND - Vcc, RW , K (in parallel)
 
 =======================================
