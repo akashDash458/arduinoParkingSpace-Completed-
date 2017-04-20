@@ -3,7 +3,7 @@ All pin connections from Arduino 2560 to peripherals are mentioned here.
 
 ======================================
 
-Arduino - LCD Panel
+Arduino 2560 - LCD Panel
 ______________________________________
 	22 - D7
 	23 - D6
