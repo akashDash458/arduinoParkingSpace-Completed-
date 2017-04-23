@@ -7,7 +7,7 @@
 int Contrast=10;
 //Instead of using potentiometer, I ve manually set the contrast
 LiquidCrystal lcd(28, 27, 25, 24, 23, 22);   
- int slot[2][3]={{0,1,1},{1,0,1}};
+ int slot[2][3]={{0,1,0},{1,0,0}};
  void setup()
  { 
     setupLCD();
@@ -73,7 +73,7 @@ void dispParkingStatus()
         }
       else
         {
-          lcd.print(" ");
+          lcd.print("  ");
           lcd.print((char)(j+65));
           lcd.print(i+1);
           lcd.print(" ");       
@@ -88,7 +88,7 @@ void dispParkingStatus()
 }
 
 
-//This function shows nearest slot after taking parameters from calciulateNearest function
+//This function shows nearest slot after taking parameters from calculateNearest function
 void dispNearest(int r,int c)
 {
   lcd.clear();
@@ -106,5 +106,11 @@ void dispNearest(int r,int c)
   lcd.print(" m");
   delay(3000); 
   loop();  
+}
+
+void dispFull();
+{
+  lcd.clear();  
+  lcd.print("ALL SLOTS TAKEN");  
 }
 
