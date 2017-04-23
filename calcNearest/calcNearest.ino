@@ -24,6 +24,7 @@ void calcNearest()
       if(slot[i][j]==0)//check availability of slot
       {
          flag=0;             //tells that empty slot is there
+         dispNearest(i,j);        //send index to display panel
          break;         //break out of the loop
       }
      }
@@ -32,8 +33,8 @@ void calcNearest()
   if(flag==1)            //if no spot is found
     dispFull();       //slot not found
     
-  else
-    dispNearest(i,j);        //send index to display panel
+  
+    
    
 }
 
