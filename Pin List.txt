@@ -11,18 +11,46 @@ ______________________________________
 	25 - D4
 	26 - Vo
 	27 - E
-	28 - Rs
-	
+	28 - Rs	
 	
 	5V - Vdd,A  (in parallel)
 	GND - Vcc, RW , K (in parallel)
+
+
+=======================================
+	        
+Arduino - Ultrasonic Sensor(Transmitter -t  and Echo-e)
+_______________________________________
+	31-t1
+	32-t2
+	33-t3
+	34-t4 
+	35-t5 
+	36-t6
+	37-e1
+	38-e2 
+	39-e3
+	40-e4
+	41-e5
+	42-e6
+
+	5V - Vdd of each Ultrasonic Ssensor  (in parallel)
+	GND - GND of each Ultrasonic Ssensor (in parallel)
 
 =======================================
 
 Arduino - LEDs
 _______________________________________
 
+   43 - Led 1 (+ve terminal)
+   44 - Led 2 (+ve terminal)
+   45 - Led 3 (+ve terminal)
+   46 - Led 4 (+ve terminal)
+   47 - Led 5 (+ve terminal)
+   48 - Led 6 (+ve terminal)
 
+   GND - -ve terminal  of each LED (in parallel)
+   
 =======================================
 
 
