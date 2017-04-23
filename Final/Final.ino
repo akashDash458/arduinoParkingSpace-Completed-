@@ -1,3 +1,4 @@
+
 /**This Arduino project uses Arduino Mega 2560 for a 3x2 parking system.
  * It uses ultrasonic sensors to detect cars, servo motors to open and close gate after scanning Rfid card.
  * Display is taken care by a 16x2 lcd panel and LCDs to show parking status of each slot.  
@@ -89,9 +90,7 @@ void dispParkingStatus()
           lcd.print(" ");       
           
         }
-    }
-    
-      
+    } 
   }
    delay(3000); 
     
@@ -107,7 +106,7 @@ void calcNearest()
       {
          flag=0;             //tells that empty slot is there
         dispNearest(i,j);        //send index to display panel
-         break;         //break out of the loop
+         return ;
       }
      }
   
