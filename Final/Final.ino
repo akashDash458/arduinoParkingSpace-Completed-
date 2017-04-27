@@ -9,7 +9,7 @@
 LiquidCrystal lcd(28, 27, 25, 24, 23, 22); 
 
 int slot[2][3]={{0,0,0},{0,0,0}};
-int ledMatrix[2][3] = { {43,  44,  45  }, {46,  47,  48  } };   
+int ledMatrix[2][3] = {{ 43,  45,  47} ,{44,  46,  48}   };   
 //the matrix will hold the pin assignments for the LED
 int Contrast=50;      //Instead of using potentiometer, I ve manually set the contrast
 /*Initialse all the variables and have the slot set to zero by default
@@ -69,9 +69,9 @@ void setupUltrasonic()
 void setupLED()
 {
   //Initialse the LED's
-  for(int i = 0; i < 2; i++)
+  for(int j = 0; j < 3; j++)
   {
-    for(int j = 0; j < 3; j++)
+    for(int i = 0; i < 2; i++)
     {
       pinMode(ledMatrix[i][j], OUTPUT);
  
@@ -83,10 +83,12 @@ void setupLED()
 //This part needs to be  changed once we combine the project  
 void loop()
  {  
-     dispGateOpen();
+    updateSlot();
+    calcNearest();
+    //dispGateOpen();
      
-     dispGateClose();
-     updateSlot();
+    //dispGateClose();
+     
  }
 //Invoked when the gate opens
 void dispGateOpen()
@@ -94,6 +96,9 @@ void dispGateOpen()
   lcd.clear();
   lcd.print("<<OPENING GATE>>");
   delay(3000); 
+  dispParkingStatus();
+  
+  calcNearest();
    
 }
 
@@ -104,9 +109,7 @@ void dispGateClose()
   lcd.setCursor(0,1);
   lcd.print("<<CLOSING GATE>>");
   delay(3000);
-  dispParkingStatus();
-  
-  calcNearest();  
+    
  }
 
 
@@ -180,7 +183,7 @@ void dispNearest(int r,int c)
   lcd.print("Distance :");
   lcd.print(distance);
   lcd.print(" m");
-  delay(3000); 
+  delay(1500); 
   
 }
 
@@ -188,7 +191,7 @@ void dispFull()
 {
   lcd.clear();  
   lcd.print("ALL SLOTS TAKEN!");  
-   delay(3000); 
+   delay(1500); 
 }
 
 void updateSlot()
@@ -201,10 +204,11 @@ void updateSlot()
   int n=0;       //initialse the counter to be zero
   float dist=0.0,dur=0.0;
    
-   for(j=0;j<col;i++)//loop across columns
+   for(j=0;j<col;j++)//loop across columns
     for(i=0;i<row;i++)      //loop across rows
-     {
-       digitalWrite(arr_t[n], LOW);//set the LED off
+     { // lcd.clear();
+      
+       digitalWrite(arr_t[n], LOW);  //set the transmitter state low
        delayMicroseconds(2);
           
       digitalWrite(arr_t[n],HIGH);
@@ -212,23 +216,27 @@ void updateSlot()
       digitalWrite(arr_t[n],LOW);
       dur = pulseIn(arr_e[n],HIGH);//store the length of pulse for pin
       dist = dur*.034/2;    //calculate distance
+     // lcd.print(dist);
+     // delay(2000);
              
-      if(dist<=5 && dist>0)   //check if slot is empty or full
-      {
-        slot[i][j]=1;//indicate that the slot is filled
+      if(dist>10)   //check if slot is empty or full
+      { 
+      //delay(2000);
+        slot[i][j]=0;//indicate that the slot is empty
         digitalWrite(ledMatrix[i][j], HIGH);//set led on for that slot 
-        lcd.setCursor(0,1);
-        lcd.print(dist);
-        delay(1000);
+       // lcd.setCursor(0,1);
+        
+        
+        //delay(1000);
       }
       else
-      {
-        slot[i][j]=0;//indicates the slot is empty
+      { 
+        slot[i][j]=1;//indicates the slot is full
         digitalWrite(ledMatrix[i][j], LOW);//set led off for that slot 
       }
       n++;//increment the index of arrays e and t
     }
-  
+ dispParkingStatus(); 
 }
 
 
